@@ -4,7 +4,8 @@ RUN dnf -y install httpd mod_wsgi python-psycopg2 mod_ssl resultsdb python-gunic
     && dnf clean all
 
 RUN chmod a+rxw /usr/share/ \
-    && chmod a+rxw /etc/resultsdb/ 
+    && chmod a+rxw /etc/resultsdb/ \
+    && chmod a+rxw /home/ 
     #&& chmod a+rxw /var/log/resultsdb/
 
 #RUN yum -y update \
