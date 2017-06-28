@@ -6,32 +6,13 @@ RUN dnf -y install httpd mod_wsgi python-psycopg2 mod_ssl resultsdb python-gunic
 RUN chmod a+rxw /usr/share/ \
     && chmod a+rxw /etc/resultsdb/ \
     && chmod a+rxw /home/ 
-    #&& chmod a+rxw /var/log/resultsdb/
 
-#RUN yum -y update \
-#    && yum -y install epel-release \
-#    && yum -y install --setopt=tsflags=nodocs \
-#    httpd mod_wsgi resultsdb python-gunicorn python-pip \
-#    && yum -y clean all
-
-
-RUN sed -i -e 's/replace-me-with-something-random/'1234'/g' /etc/resultsdb/settings.py
-
-RUN ln -s /usr/share/resultsdb/resultsdb.wsgi /lib/python2.7/site-packages/resultsdb/wsgi.py
-
-#           -e 's/SQLALCHEMY_DATABASE_URI/#SQLALCHEMY_DATABASE_URI/g' /etc/resultsdb/settings.py
-#		URI="SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://"$RESULTSDB_DB_URI"'"
-		#sed -i '6i'$URI /etc/resultsdb/settings.py
-#		echo $URI >> /etc/resultsdb/settings.py
-#		resultsdb init_db 
-		#chown apache:apache /var/tmp/resultsdb_db.sqlite
-		#chmod 660 /var/tmp/resultsdb_db.sqlite
-#		chown -R apache:apache /home/certs
-#                chmod -R 440 /home/certs
-#		touch /home/setup_completed
-#	fi
-#fi
-#httpd -D FOREGROUND
+RUN sed -i -e 's/replace-me-with-something-random/'1234'/g' /etc/resultsdb/settings.py \
+           -e 's/SQLALCHEMY_DATABASE_URI/#SQLALCHEMY_DATABASE_URI/g' /etc/resultsdb/settings.py \
+    &&  URI="SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://newtestuser:password@10.8.180.78:5432/sampledatabase'" \
+    && echo $URI >> /etc/resultsdb/settings.py \
+    && ln -s /usr/share/resultsdb/resultsdb.wsgi /lib/python2.7/site-packages/resultsdb/wsgi.py \
+    && resultsdb init_db
 
 RUN resultsdb init_db
 
