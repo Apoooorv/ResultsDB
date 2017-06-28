@@ -1,0 +1,20 @@
+<virtualhost *:80>
+	Servername localhost
+	WSGIDaemonProcess resultsdb user=apache group=apache threads=5 home=/usr/share/resultsdb
+	WSGIScriptAlias /resultsdb /usr/share/resultsdb/resultsdb.wsgi
+	#WSGISocketPrefix run/wsgi
+
+	<Directory /usr/share/resultsdb>
+    		WSGIProcessGroup resultsdb
+    		WSGIApplicationGroup %{GLOBAL}
+    		WSGIScriptReloading On
+    		Require all granted
+	</Directory>
+</virtualhost>
+
+#Alias /resultsdb/static /var/www/resultsdb/resultsdb/static
+
+#<Directory /var/www/resultsdb/resultsdb/static>
+#Order allow,deny
+#Allow from all
+#</Directory>

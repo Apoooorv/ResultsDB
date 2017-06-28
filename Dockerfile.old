@@ -1,0 +1,27 @@
+FROM fedora:latest
+
+RUN dnf -y install httpd mod_wsgi resultsdb python-psycopg2 mod_ssl && dnf clean all
+
+#RUN echo "The Web Server is Running" > /var/www/html/index.html
+
+ADD resultsdb.conf /etc/httpd/conf.d/
+ADD setup.sh /home/
+
+#ADD script.py /home/
+
+#RUN sed -i -e 's/replace-me/12replace-me/g' /etc/resultsdb/settings.py
+
+#RUN resultsdb init_db && chown apache:apache /var/tmp/resultsdb_db.sqlite && chmod 660 /var/tmp/resultsdb_db.sqlite
+ 
+#RUN python /home/script.py
+
+EXPOSE 8080
+EXPOSE 8443
+
+# Start the service
+#CMD ["-D", "FOREGROUND"]
+#ENTRYPOINT ["httpd", "-D", "FOREGROUND"]
+#ENTRYPOINT ["sleep", "99999999999"]
+#EXPOSE 80
+ENTRYPOINT ["bash", "/home/setup.sh"]
+#ENTRYPOINT httpd
