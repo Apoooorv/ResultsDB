@@ -14,7 +14,6 @@ RUN sed -i -e 's/replace-me-with-something-random/'1234'/g' /etc/resultsdb/setti
 #    &&  URI="SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://newtestuser:password@10.8.180.78:5432/sampledatabase'" \
 #    && echo $URI >> /etc/resultsdb/settings.py \
 RUN ln -s /usr/share/resultsdb/resultsdb.wsgi /lib/python2.7/site-packages/resultsdb/wsgi.py 
-    #&& resultsdb init_db
 
 EXPOSE 9090
 
