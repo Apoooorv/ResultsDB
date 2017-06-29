@@ -1,7 +1,7 @@
 import json
 import os
 
-filepath = "newsecret.json"
+filepath = "/secrets/secret.json"
 if os.path.exists(filepath):
 	with open(filepath) as f:
 		data = json.load(f)
