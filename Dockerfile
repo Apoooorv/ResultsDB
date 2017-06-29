@@ -17,5 +17,5 @@ RUN ln -s /usr/share/resultsdb/resultsdb.wsgi /lib/python2.7/site-packages/resul
 
 EXPOSE 9090
 
-ENTRYPOINT resultsdb init_db && gunicorn --bind 0.0.0.0:9090 --access-logfile=home/resultsdb.logs --pythonpath /usr/share/resultsdb/ resultsdb.wsgi
+ENTRYPOINT python /home/setup.py && resultsdb init_db && gunicorn --bind 0.0.0.0:9090 --access-logfile=home/resultsdb.logs --pythonpath /usr/share/resultsdb/ resultsdb.wsgi
 #ENTRYPOINT ["sleep","9999999999"]
