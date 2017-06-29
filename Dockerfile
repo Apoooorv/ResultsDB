@@ -9,7 +9,7 @@ RUN chmod a+rxw /usr/share/ \
     && chmod a+rxw /etc/resultsdb/ \
     && chmod a+rxw /home/ 
 
-RUN sed -i -e 's/replace-me-with-something-random/'1234'/g' /etc/resultsdb/settings.py
+#RUN sed -i -e 's/replace-me-with-something-random/'1234'/g' /etc/resultsdb/settings.py
  #          -e 's/SQLALCHEMY_DATABASE_URI/#SQLALCHEMY_DATABASE_URI/g' /etc/resultsdb/settings.py \
 #    &&  URI="SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://newtestuser:password@10.8.180.78:5432/sampledatabase'" \
 #    && echo $URI >> /etc/resultsdb/settings.py \
